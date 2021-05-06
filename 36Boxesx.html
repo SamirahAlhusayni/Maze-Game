@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>maze Game</title>
+</head>
+<style>
+    body{
+        background-color: rgb(126, 134, 141);
+    }
+    h1{
+        text-align: center;
+        background-color: rgb(167, 159, 167);
+        border-radius: 60px;
+        border: 1px solid rgb(0, 0, 0);
+    }
+    div{
+        width: 15px; 
+        height: 15px;
+        border: 15px solid rgb(0, 0, 0);
+        padding: 15px;
+        background:rgb(25, 20, 48);
+        position: relative;
+        border-radius: 5px;
+        top: 50%;
+        margin: 0 auto;
+
+    }
+    table{
+        position: relative;
+        top: 50%;
+        margin: auto;
+    }
+
+</style>
+<body >
+    
+    <h1>Welcom in Maze Game</h1>
+    <table id ="table"> </table>
+
+</body>
+ 
+    <script>
+            c();
+        function c (){  
+            var table = document.getElementById("table");
+            for (let index = 0; index < 6; index++) {
+                var row = document.createElement("tr");
+                for (let index2 = 0; index2 < 6; index2++) {
+                    var dt = document.createElement("td");
+                    var div = document.createElement("div");
+                    dt.appendChild(div);
+                    row.appendChild(dt);
+                    table.appendChild(row);
+                    div.setAttribute("class","divs") ;
+                }
+            }
+            rn();   
+            }
+            function rn(){
+                var divs = document.getElementsByClassName("divs");
+                for (let index3 = 0; index3 <36 ; index3++) {
+                    let divs3=divs.item(index3);
+                    var vv=30;
+                    if(vv==30 && index3 ==vv){
+                        divs3.style.backgroundColor="orange";
+                    }
+                    if(index3 ==5){
+                        divs3.style.backgroundColor="green"; 
+                    }
+            }
+            let ob=Math.floor(Math.random()*4)+3;
+            for(i=ob;i<9;){
+                let rand=Math.floor(Math.random()*36);
+                    if(rand!=30 && rand !=31 && rand!=24
+                    && rand!=5 && rand!=4 && rand!=11)
+                divs.item(rand).style.backgroundColor="black";
+                i++;
+            }
+        }
+        function nn(){
+        var divsX = document.getElementsByClassName("divs");
+        var divsY = document.getElementsByClassName("divs");
+        var x=30;
+        var y=30;
+        document.addEventListener("keydown", function(e){
+            var key =e.which;
+            let startPoint=divsX[x];     //arrow up
+            let endPoint=divsY[y];
+            switch(key){
+                case 38:
+                x-=6;
+                startPoint=divsX[x];
+                if(startPoint.style.backgroundColor!="black"&&startPoint.style.backgroundColor!="green"){
+                    endPoint=divsY[y];
+                    y-=6;
+                    startPoint.style.backgroundColor="yellow";
+                    endPoint.style.backgroundColor="rgb(25, 20, 48)";
+                }else if (startPoint.style.backgroundColor=="green"){
+                    startPoint.style.backgroundColor="yellow";
+                    endPoint.style.backgroundColor="rgb(25, 20, 48)";
+                    alert("مبرووووووك فزت");
+                    endPoint=divsY[y];
+                    y-=6;
+                }
+                else{
+                    alert("you have smashed your head!")
+                    x+=6;
+               }
+                break;
+                case 37:    
+                x-=1;
+                     //arrow up
+                    startPoint=divsX[x];
+                if(startPoint.style.backgroundColor!="black"&&startPoint.style.backgroundColor!="green"){
+                    endPoint=divsY[y];
+                    startPoint.style.backgroundColor="yellow";
+                    endPoint.style.backgroundColor="rgb(25, 20, 48)";
+                    y-=1;
+            }else if (startPoint.style.backgroundColor=="green"){
+                startPoint.style.backgroundColor="yellow";
+                endPoint.style.backgroundColor="rgb(25, 20, 48)";
+                alert("مبرووووووك فزت");
+                endPoint=divsY[y];
+                    y-=1;
+                }
+                else{
+                    alert("you have smashed your head!")
+                    x+=1;
+               }
+                break;
+                case 40:
+                x+=6;
+                startPoint=divsX[x];
+                if(startPoint.style.backgroundColor!="black"&&startPoint.style.backgroundColor!="green"){
+                    endPoint=divsY[y];
+                    y+=6;
+                    startPoint.style.backgroundColor="yellow";
+                    endPoint.style.backgroundColor="rgb(25, 20, 48)";
+                }else if (startPoint.style.backgroundColor=="red"){
+                    endPoint=divsY[y];
+                    y+=6;
+                    startPoint.style.backgroundColor="yellow";
+                    endPoint.style.backgroundColor="rgb(25, 20, 48)";
+                }
+                else{
+                    alert("you have smashed your head!")
+                    x-=6;
+               }
+                break;
+                case 39:
+                x+=1;
+                startPoint=divsX[x];
+                if(startPoint.style.backgroundColor!="black"&&startPoint.style.backgroundColor!="green"){
+                    endPoint=divsY[y];
+                    y+=1;
+                    startPoint.style.backgroundColor="yellow";
+                    endPoint.style.backgroundColor="rgb(25, 20, 48)";
+                }else if (startPoint.style.backgroundColor=="red"){
+                    startPoint.style.backgroundColor="yellow";
+                    endPoint.style.backgroundColor="rgb(25, 20, 48)";
+                    alert("مبرووووووك فزت")
+                    endPoint=divsY[y];
+                    y+=1;
+                }
+                else{
+                    alert("you have smashed your head!")
+                    x-=1;
+               }
+                break;
+        }
+    });
+    }
+    nn();
+    </script>
+</body>
+</html>
